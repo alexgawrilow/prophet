@@ -95,7 +95,7 @@ class Prophet(object):
             changepoint_prior_scale=0.05,
             mcmc_samples=0,
             interval_width=0.80,
-            uncertainty_samples=1000,
+            uncertainty_samples=0,
     ):
         self.growth = growth
 
@@ -911,7 +911,7 @@ class Prophet(object):
         min_dt = dt.iloc[dt.values.nonzero()[0]].min()
 
         # Yearly seasonality
-        yearly_disable = last - first < pd.Timedelta(days=730)
+        yearly_disable = last - first < pd.Timedelta(days=366)
         fourier_order = self.parse_seasonality_args(
             'yearly', self.yearly_seasonality, yearly_disable, 10)
         if fourier_order > 0:
