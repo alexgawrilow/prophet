@@ -911,7 +911,7 @@ class Prophet(object):
         min_dt = dt.iloc[dt.values.nonzero()[0]].min()
 
         # Yearly seasonality
-        yearly_disable = last - first < pd.Timedelta(days=366)
+        yearly_disable = last - first < pd.Timedelta(days=730)
         fourier_order = self.parse_seasonality_args(
             'yearly', self.yearly_seasonality, yearly_disable, 10)
         if fourier_order > 0:
